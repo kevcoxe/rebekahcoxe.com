@@ -1,0 +1,28 @@
+{
+  "name": "rebekahcoxe.com",
+  "version": "1.0.0",
+  "description": "Rebekah Coxe blog site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevcoxe/rebekahcoxe.com.git"
+  },
+  "author": "Kevin Coxe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevcoxe/rebekahcoxe.com/issues"
+  },
+  "homepage": "https://github.com/kevcoxe/rebekahcoxe.com#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
+    "multer": "^1.1.0"
+  }
+}

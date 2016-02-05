@@ -1,0 +1,24 @@
+{
+  "name": "angular",
+  "homepage": "https://github.com/kevcoxe/rebekahcoxe.com",
+  "authors": [
+    "Kevin Coxe <kevcoxe@gmail.com>"
+  ],
+  "description": "",
+  "main": "app.js",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-ui-router": "ui-router#^0.2.17",
+    "bootstrap": "^3.3.6"
+  }
+}
