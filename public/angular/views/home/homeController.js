@@ -1,6 +1,7 @@
 myApp.controller("homeCtrl", function($scope, $state, $http) {
 
     $scope.message = "Welcome!";
+    $scope.posts = [];
 
     $scope.getInfo = function() {
 
@@ -41,7 +42,18 @@ myApp.controller("homeCtrl", function($scope, $state, $http) {
 
                 $scope.post_title = "";
                 $scope.post_content = "";
+                $scope.getPosts();
             });
     };
+
+    $scope.getPosts = function() {
+        $http.post("/getPosts")
+            .then(function (response) {
+                var r = response.data;
+                console.log(r);
+                $scope.posts = r;
+            });
+    };
+    $scope.getPosts();
 
 });

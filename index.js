@@ -60,15 +60,25 @@ app.post("/newPost", function (req, res) {
     var input = req.body;
     var tempPost = new models.Post({
         title: input.title ? input.title : "",
-        content: input.content ? input.connect : ""
+        content: input.content ? input.content : ""
     });
 
-    console.log(input);
+    tempPost.save(function (err, tempPost) {
+        if (err) console.log(err);
+        console.log(tempPost);
+    });
+
     res.end(JSON.stringify(tempPost));
 });
 
+app.post("/getPosts", function (req, res) {
 
+    models.Post.find({}, function (err, posts) {
+        console.log(posts);
+        res.send(posts);
+    });
 
+});
 
 var server = app.listen(3999, function () {
 
