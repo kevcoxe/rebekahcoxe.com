@@ -1,10 +1,10 @@
 var express = require('express');
 var app = express();
 
-var schemas = require("./db_stuff/schemas.js").schemas;
-var models = require("./db_stuff/schemas.js").models;
-var mongoose = require("./db_stuff/schemas.js").mongoose;
-var db = require("./db_stuff/schemas.js").db;
+var schemas = require("./db_stuff/dbInfo.js").schemas;
+var models = require("./db_stuff/dbInfo.js").models;
+var mongoose = require("./db_stuff/dbInfo.js").mongoose;
+var db = require("./db_stuff/dbInfo.js").db;
 
 
 // --------------------------------------------
@@ -58,23 +58,33 @@ app.post("/input", function (req, res) {
 
 app.post("/newPost", function (req, res) {
     var input = req.body;
-    var tempPost = new models.Post({
-        title: input.title ? input.title : "",
-        content: input.content ? input.content : ""
-    });
-
-    tempPost.save(function (err, tempPost) {
+    models.User.findOne({email: input.email}, function (err, user) {
         if (err) console.log(err);
-        console.log(tempPost);
-    });
 
-    res.end(JSON.stringify(tempPost));
+        console.log("\n\nUser " + user.first_name + " id: " + user._id + "\n\n");
+        console.log(input.email);
+        var p = {
+            user_id: user._id,
+            title: input.title ? input.title : "",
+            content: input.content ? input.content : ""
+        };
+
+        console.log(p);
+
+        var tempPost = new models.Post(p);
+
+        tempPost.save(function (err, tempPost) {
+            if (err) console.log(err);
+            console.log(tempPost);
+        });
+
+        res.end(JSON.stringify(tempPost));
+    });
 });
 
 app.post("/getPosts", function (req, res) {
 
     models.Post.find({}, function (err, posts) {
-        console.log(posts);
         res.send(posts);
     });
 

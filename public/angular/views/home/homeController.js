@@ -31,6 +31,7 @@ myApp.controller("homeCtrl", function($scope, $state, $http) {
 
     $scope.makePost = function () {
         var data = {
+            email: "kevcoxe@gmail.com",
             title: $scope.post_title,
             content: $scope.post_content
         };
