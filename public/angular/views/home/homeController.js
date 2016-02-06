@@ -28,4 +28,20 @@ myApp.controller("homeCtrl", function($scope, $state, $http) {
 
     };
 
+    $scope.makePost = function () {
+        var data = {
+            title: $scope.post_title,
+            content: $scope.post_content
+        };
+
+        $http.post("/newPost", JSON.stringify(data))
+            .then(function (response) {
+                var r = response.data;
+                console.log(r);
+
+                $scope.post_title = "";
+                $scope.post_content = "";
+            });
+    };
+
 });
