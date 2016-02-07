@@ -1,19 +1,6 @@
 myApp.controller("homeCtrl", function($scope, $state, $http) {
 
-    $scope.message = "Welcome!";
     $scope.posts = [];
-
-    $scope.getInfo = function() {
-
-        $http.post("/info")
-            .then(function (response) {
-                $scope.message = response.data.message;
-                console.log($scope.message);
-            });
-
-        console.log("Pressed");
-
-    };
 
     $scope.postInfo = function() {
 
