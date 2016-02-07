@@ -7,24 +7,6 @@ var mongoose = require("./db_stuff/dbInfo.js").mongoose;
 var db = require("./db_stuff/dbInfo.js").db;
 
 
-// --------------------------------------------
-
-//var Post = mongoose.model("Post", testSchema);
-//
-//var firstPost = new Post({
-//    title: "first post!",
-//    content: "This is my first blog post to see how it works"
-//});
-//firstPost.speak();
-//
-//firstPost.save(function (err, firstPost) {
-//    if (err) console.log(err);
-//    firstPost.speak();
-//});
-
-
-
-// --------------------------------------------
 
 // bodyparser
 var bodyParser = require('body-parser');

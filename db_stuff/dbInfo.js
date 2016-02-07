@@ -21,17 +21,11 @@ db.once('open', function() {
 
 // Post schema
 var postSchema = mongoose.Schema({
-    user_id: String,
     title: String,
-    content: String
+    content: String,
+    coments: [String],
+    date_created: { type: Date, default: Date.now }
 });
-
-postSchema.methods.speak = function () {
-    var greeting = this.title
-        ? "My title is " + this.title
-        : "I do not have a title";
-    console.log(greeting);
-};
 
 // User schema
 var userSchema = mongoose.Schema({
