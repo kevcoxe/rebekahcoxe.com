@@ -31,7 +31,9 @@ var postSchema = mongoose.Schema({
 var userSchema = mongoose.Schema({
     first_name: String,
     last_name: String,
-    email: String
+    email: String,
+    bio: String,
+    profile_pic: String
 });
 
 
