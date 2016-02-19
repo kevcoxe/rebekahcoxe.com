@@ -2,8 +2,22 @@
 // my set up. Grunt did some weird things with scope, and I ended up using nodemon. This
 // setup is now using Gulp. It works exactly how I expect it to and is WAY more concise.
 var gulp = require('gulp'),
+    exec = require('child_process').exec,
     spawn = require('child_process').spawn,
     node;
+
+
+function runCommand(command) {
+    return function (cb) {
+        exec(command, function (err, stdout, stderr) {
+            console.log(stdout);
+            console.log(stderr);
+            cb(err);
+        });
+    }
+}
+
+gulp.task('start-mongo', runCommand('sudo mongod --dbpath ./data/'));
 
 /**
  * $ gulp server
@@ -24,6 +38,7 @@ gulp.task('server', function() {
  * description: start the development environment
  */
 gulp.task('default', function() {
+  gulp.run('start-mongo')
   gulp.run('server')
 
   gulp.watch(['./index.js', './lib/**/*.js'], function() {
