@@ -7,6 +7,11 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
             url: "/",
             templateUrl: "angular/views/home/home.html",
             controller: "homeCtrl",
+        })
+        .state('profile', {
+            url: "/profile",
+            templateUrl: "angular/views/profile/profile.html",
+            controller: "profileCtrl",
         });
 
     $urlRouterProvider.otherwise("/");

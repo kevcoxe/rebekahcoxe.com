@@ -72,6 +72,15 @@ app.post("/getPosts", function (req, res) {
 
 });
 
+
+app.post("/getUser", function (req, res) {
+
+    models.Post.findOne({_id: "56b5fbcaa4e8cad92ca25b29"}, function (err, user) {
+        res.send(user);
+    });
+
+});
+
 var server = app.listen(3999, function () {
 
   var host = server.address().address
