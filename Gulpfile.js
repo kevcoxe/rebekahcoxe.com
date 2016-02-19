@@ -38,7 +38,7 @@ gulp.task('server', function() {
  * description: start the development environment
  */
 gulp.task('default', function() {
-  gulp.run('start-mongo')
+  //gulp.run('start-mongo')
   gulp.run('server')
 
   gulp.watch(['./index.js', './lib/**/*.js'], function() {
