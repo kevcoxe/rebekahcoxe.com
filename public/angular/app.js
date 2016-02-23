@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ui.router']);
+var myApp = angular.module('myApp', ['ui.router', 'textAngular']);
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /state1
@@ -12,6 +12,11 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
             url: "/profile",
             templateUrl: "angular/views/profile/profile.html",
             controller: "profileCtrl",
+        })
+        .state('newPost', {
+            url: "/newPost",
+            templateUrl: "angular/views/posts/createPost.html",
+            controller: "postCtrl",
         });
 
     $urlRouterProvider.otherwise("/");

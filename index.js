@@ -38,30 +38,20 @@ app.post("/input", function (req, res) {
 });
 
 
-app.post("/newPost", function (req, res) {
+app.post("/createPost", function (req, res) {
     var input = req.body;
-    models.User.findOne({email: input.email}, function (err, user) {
-        if (err) console.log(err);
 
-        console.log("\n\nUser " + user.first_name + " id: " + user._id + "\n\n");
-        console.log(input.email);
-        var p = {
-            user_id: user._id,
-            title: input.title ? input.title : "",
-            content: input.content ? input.content : ""
-        };
-
-        console.log(p);
-
-        var tempPost = new models.Post(p);
-
-        tempPost.save(function (err, tempPost) {
-            if (err) console.log(err);
-            console.log(tempPost);
-        });
-
-        res.end(JSON.stringify(tempPost));
+    var tempPost = new models.Post({
+        title: input.title || "test title",
+        content: input.content || "default content"
     });
+
+    tempPost.save(function (err, tempPost) {
+        if (err) console.log(err);
+        console.log(tempPost);
+    });
+
+    res.end(JSON.stringify(tempPost));
 });
 
 app.post("/getPosts", function (req, res) {
