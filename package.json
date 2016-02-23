@@ -16,14 +16,12 @@
     "url": "https://github.com/kevcoxe/rebekahcoxe.com/issues"
   },
   "homepage": "https://github.com/kevcoxe/rebekahcoxe.com#readme",
-  "devDependencies": {
-    "gulp": "^3.9.0"
-  },
   "dependencies": {
     "body-parser": "^1.14.2",
     "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
-    "mongodb": "^2.1.6",
+    "gulp": "^3.9.1",
+    "mongodb": "^2.1.7",
     "mongoose": "^4.4.2",
     "multer": "^1.1.0"
   }

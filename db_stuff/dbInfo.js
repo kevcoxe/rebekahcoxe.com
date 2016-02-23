@@ -53,7 +53,8 @@ var User = mongoose.model("User", userSchema);
 
 module.exports = {
     schemas: {
-        testSchema: postSchema
+        postSchema: postSchema,
+        userSchema: userSchema
     },
     models: {
         Post: Post,

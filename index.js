@@ -73,6 +73,7 @@ app.post("/getPosts", function (req, res) {
 });
 
 
+
 app.post("/getUser", function (req, res) {
 
     models.User.findOne({email: "rkcoxe@gmail.com"}, function (err, user) {
