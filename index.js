@@ -42,12 +42,20 @@ app.post("/createPost", function (req, res) {
     var input = req.body;
 
     var tempPost = new models.Post({
+        owner: input.user_id,
         title: input.title || "test title",
         content: input.content || "default content"
     });
 
     tempPost.save(function (err, tempPost) {
         if (err) console.log(err);
+        if (!err) {
+            models.Post.find({})
+                .populate("owner")
+                .exec(function (err, posts) {
+                    console.log(JSON.stringify(posts, null, "  "))
+                })
+        }
         console.log(tempPost);
     });
 
@@ -58,7 +66,7 @@ app.post("/getPosts", function (req, res) {
 
     models.Post.find({}, function (err, posts) {
         res.send(posts);
-    });
+    }).populate("owner");
 
 });
 

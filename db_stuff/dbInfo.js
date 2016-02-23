@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
 
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
 /*========================
  * Connections
@@ -21,19 +22,23 @@ db.once('open', function() {
 
 // Post schema
 var postSchema = mongoose.Schema({
-    title: String,
-    content: String,
+    owner: {
+        type: ObjectId,
+        ref: "User"
+    },
+    title: {type: String, default: "Default title"},
+    content: {type: String, default: "Default content"},
     coments: [String],
     date_created: { type: Date, default: Date.now }
 });
 
 // User schema
 var userSchema = mongoose.Schema({
-    first_name: String,
-    last_name: String,
-    email: String,
-    bio: String,
-    profile_pic: String
+    first_name: {type: String, default: "John"},
+    last_name: {type: String, default: "Doe"},
+    email: {type: String, default: "test@tester.com"},
+    bio: {type: String, default: "Default bio"},
+    profile_pic: {type: String, default: ""}
 });
 
 
