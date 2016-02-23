@@ -6,6 +6,44 @@ var models = require("./db_stuff/dbInfo.js").models;
 var mongoose = require("./db_stuff/dbInfo.js").mongoose;
 var db = require("./db_stuff/dbInfo.js").db;
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+
+/************************
+ * passport
+ *
+ */
+
+passport.use(new LocalStrategy({
+    usernameField: "email",
+    passwordField: "password"
+  },
+  function(username, password, done) {
+    models.User.findOne({ email: email }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+);
+
+
+/*
+ *
+ *
+ ***********************/
 
 
 // bodyparser
