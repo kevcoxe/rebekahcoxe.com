@@ -3,12 +3,14 @@ myApp.controller("postCtrl", function($scope, $state, $http) {
 
     $scope.post = {};
     $scope.user = {};
+    $scope.tags = [];
 
     $scope.createPost = function () {
         $http.post("/createPost", $scope.post)
             .then(function (response) {
                 var data = response.data;
                 console.log(data);
+                $scope.post = {};
             });
     };
 
@@ -22,5 +24,16 @@ myApp.controller("postCtrl", function($scope, $state, $http) {
             });
     };
     $scope.getUser();
+
+
+    $scope.getTags = function() {
+        $http.post("/getTags")
+            .then(function (response) {
+                var r = response.data;
+                console.log(r);
+                $scope.tags = r;
+            });
+    };
+    $scope.getTags();
 
 });

@@ -26,6 +26,14 @@ var postSchema = mongoose.Schema({
         type: ObjectId,
         ref: "User"
     },
+    title_image: {
+        type: ObjectId,
+        ref: "Picture"
+    },
+    tag: {
+        type: ObjectId,
+        ref: "Tag"
+    },
     title: {type: String, default: "Default title"},
     content: {type: String, default: "Default content"},
     coments: [String],
@@ -41,6 +49,18 @@ var userSchema = mongoose.Schema({
     profile_pic: {type: String, default: ""}
 });
 
+// Picture schema
+var pictureSchema = mongoose.Schema({
+    title: {type: String, default: "default"},
+    location: {type: String, default: "/images/defualt.png"},
+    size: {type: String, default: "200x200"}
+});
+
+// Tag schema
+var tagSchema = mongoose.Schema({
+    title: {type: String, default: "life"}
+});
+
 
 /*========================
  * Models
@@ -49,6 +69,8 @@ var userSchema = mongoose.Schema({
 
 var Post = mongoose.model("Post", postSchema);
 var User = mongoose.model("User", userSchema);
+var Picture = mongoose.model("Picture", pictureSchema);
+var Tag = mongoose.model("Tag", tagSchema);
 
 
 /*========================
@@ -59,11 +81,15 @@ var User = mongoose.model("User", userSchema);
 module.exports = {
     schemas: {
         postSchema: postSchema,
-        userSchema: userSchema
+        userSchema: userSchema,
+        pictureSchema: pictureSchema,
+        tagSchema: tagSchema
     },
     models: {
         Post: Post,
-        User: User
+        User: User,
+        Picture: Picture,
+        Tag: Tag
     },
     mongoose: mongoose,
     db: db

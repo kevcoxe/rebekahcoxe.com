@@ -53,6 +53,23 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static('public'));
 
+app.get('*', function(req, res, next) {
+    var err = new Error();
+    err.status = 404;
+    next(err);
+});
+
+// handling 404 errors
+app.use(function(err, req, res, next) {
+    if(err.status !== 404) {
+        return next();
+    }
+
+    // let angular handle 404
+    res.redirect("/#/404");
+});
+
+
 app.get('/', function (req, res) {
    res.sendFile( __dirname + "/" + "index.htm" );
 });
@@ -79,35 +96,52 @@ app.post("/input", function (req, res) {
 app.post("/createPost", function (req, res) {
     var input = req.body;
 
-    var tempPost = new models.Post({
-        owner: input.user_id,
-        title: input.title || "test title",
-        content: input.content || "default content"
-    });
+    models.Picture.findOne({title: "default"})
+        .exec(function (err, picture) {
+            var tempPost = new models.Post({
+                owner: input.user_id,
+                title_image: picture._id,
+                title: input.title || "test title",
+                content: input.content || "default content"
+            });
 
-    tempPost.save(function (err, tempPost) {
-        if (err) console.log(err);
-        if (!err) {
-            models.Post.find({})
-                .populate("owner")
-                .exec(function (err, posts) {
-                    console.log(JSON.stringify(posts, null, "  "))
-                })
-        }
-        console.log(tempPost);
-    });
+            tempPost.save(function (err, tempPost) {
+                if (err) console.log(err);
+                if (!err) {
+                    models.Post.find({})
+                        .populate("owner")
+                        .populate("title_image")
+                        .exec(function (err, posts) {
+                            console.log(JSON.stringify(posts, null, "  "))
+                        })
+                }
+                console.log(tempPost);
+            });
 
-    res.end(JSON.stringify(tempPost));
+            res.end(JSON.stringify(tempPost));
+        });
+
 });
 
 app.post("/getPosts", function (req, res) {
 
     models.Post.find({}, function (err, posts) {
         res.send(posts);
-    }).populate("owner");
+    })
+    .populate("owner")
+    .populate("tag")
+    .populate("title_image");
 
 });
 
+
+app.post("/getTags", function (req, res) {
+
+    models.Tag.find({}, function (err, tags) {
+        res.send(tags);
+    });
+
+});
 
 
 app.post("/getUser", function (req, res) {

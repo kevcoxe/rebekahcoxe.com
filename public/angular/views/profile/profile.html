@@ -1,19 +1,23 @@
 
-<div class="container">
+<div id="single">
 
-    <div class="row">
-        <div class="col-md-3">
-            <img src="{{ user.profile_pic }}" alt="Missing person" class="img-responsive img-rounded">
-        </div>
+    <div class="container">
 
-        <div class="col-md-9">
+    <div class="post">
+
+        <div class="caption">
+        <div class="header">
+            <img src="{{ user.profile_pic }}" class="avatar img-circle" />
+
             <h1>{{ user.first_name }} {{ user.last_name }}</h1>
         </div>
-    </div>
 
-    <hr>
-
-    <div class="row">
         <p>{{ user.bio }}</p>
+
+        </div>
     </div>
+
+    </div>
+
 </div>
+
