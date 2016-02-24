@@ -1,10 +1,15 @@
 myApp.controller("headerCtrl", function($scope, $state, $http) {
 
-    $scope.tags = [
-        "tag1",
-        "tag2",
-        "tag3",
-        "tag4"
-    ];
+    $scope.tags = [];
+
+    $scope.getTags = function() {
+        $http.post("/getTags")
+            .then(function (response) {
+                var r = response.data;
+                console.log(r);
+                $scope.tags = r;
+            });
+    };
+    $scope.getTags();
 
 });

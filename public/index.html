@@ -36,6 +36,9 @@
         <!-- Post controller -->
         <script src="angular/views/posts/postController.js"></script>
 
+        <!-- Tag controller -->
+        <script src="angular/views/tags/tagController.js"></script>
+
         <!-- textAngular -->
         <!--
         <link rel='stylesheet' href='angular/bower_components/textAngular/dist/textAngular.css'>
@@ -71,7 +74,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li ng-repeat="tag in tags"><a>{{ tag }}</a></li>
+                            <li ng-repeat="tag in tags"><a ui-sref="tags({ tagID: tag._id })">{{ tag.title }}</a></li>
                         </ul>
                     </li>
                 </ul>

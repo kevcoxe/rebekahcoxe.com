@@ -6,6 +6,7 @@ myApp.controller("postCtrl", function($scope, $state, $http) {
     $scope.tags = [];
 
     $scope.createPost = function () {
+        console.log($scope.post);
         $http.post("/createPost", $scope.post)
             .then(function (response) {
                 var data = response.data;

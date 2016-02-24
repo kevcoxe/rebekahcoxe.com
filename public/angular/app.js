@@ -18,6 +18,11 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: "angular/views/posts/createPost.html",
             controller: "postCtrl",
         })
+        .state('tags', {
+            url: "/tags:tagID",
+            templateUrl: "angular/views/tags/tags.html",
+            controller: "tagCtrl",
+        })
         .state('404', {
             url: "/404",
             templateUrl: "template/page-404.html",

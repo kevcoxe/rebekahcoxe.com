@@ -1,0 +1,19 @@
+<div id="posts" class="container">
+
+    <section ui-sref="profile" class="col-md-12 wow fadeIn" ng-repeat="post in posts track by $index">
+    <div class="post big">
+        <div class="row">
+        <div class="col-md-6 media">
+            <img src="{{ post.title_image.location }}" class="img-responsive" />
+        </div>
+        <div class="col-md-6 caption">
+            <span class="post-tag">{{ post.tag.title }}</span>
+            <a class="post-title">{{ post.title }}</a>
+            <span class="post-date">{{ post.date_created | date : format : timezone }}</span>
+            <p class="post-description">{{ post.content }}</p>
+        </div>
+        </div>
+    </div>
+    </section>
+
+</div>

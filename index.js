@@ -96,10 +96,13 @@ app.post("/input", function (req, res) {
 app.post("/createPost", function (req, res) {
     var input = req.body;
 
+    console.log("\n\nThis is the post:", JSON.stringify(input, null, "  "));
+
     models.Picture.findOne({title: "default"})
         .exec(function (err, picture) {
             var tempPost = new models.Post({
                 owner: input.user_id,
+                tag: input.tag,
                 title_image: picture._id,
                 title: input.title || "test title",
                 content: input.content || "default content"
@@ -126,6 +129,19 @@ app.post("/createPost", function (req, res) {
 app.post("/getPosts", function (req, res) {
 
     models.Post.find({}, function (err, posts) {
+        res.send(posts);
+    })
+    .populate("owner")
+    .populate("tag")
+    .populate("title_image");
+
+});
+
+app.post("/getTagedPosts", function (req, res) {
+
+    var r = req.body;
+
+    models.Post.find(r, function (err, posts) {
         res.send(posts);
     })
     .populate("owner")
