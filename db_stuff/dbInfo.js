@@ -46,7 +46,10 @@ var userSchema = mongoose.Schema({
     last_name: {type: String, default: "Doe"},
     email: {type: String, default: "test@tester.com"},
     bio: {type: String, default: "Default bio"},
-    profile_pic: {type: String, default: ""}
+    profile_pic: {
+        type: ObjectId,
+        ref: "Picture"
+    },
 });
 
 // Picture schema

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html ng-app="myApp">
     <head>
         <!--
@@ -18,11 +19,15 @@
         <link href="template/css/ada-themes.css" rel="stylesheet">
         <link href="template/css/custom.css" rel="stylesheet">
 
+        <script src="//npmcdn.com/api-check"></script>
         <script src="angular/bower_components/angular/angular.min.js"></script>
         <script src="angular/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
         <script src="angular/app.js"></script>
         <script src="angular/filters/myFilters.js"></script>
+
+        <script src="angular/bower_components/angular-formly/dist/formly.min.js"></script>
+        <script src="angular/bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"></script>
 
         <!-- Header controller -->
         <script src="angular/views/header/headerController.js"></script>
@@ -32,6 +37,9 @@
 
         <!-- Profile controller -->
         <script src="angular/views/profile/profileController.js"></script>
+
+        <!-- Edit Profile controller -->
+        <script src="angular/views/profile/editProfileController.js"></script>
 
         <!-- Post controller -->
         <script src="angular/views/posts/postController.js"></script>
@@ -68,7 +76,13 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a ui-sref="home">Home</a></li>
-                    <li><a ui-sref="profile">Profile</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="profile">View Profile</a></li>
+                            <li><a ui-sref="editProfile">Edit Profile</a></li>
+                        </ul>
+                    </li>
                     <li><a ui-sref="newPost">New Post</a></li>
 
                     <li class="dropdown">

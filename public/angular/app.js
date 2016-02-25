@@ -13,6 +13,11 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: "angular/views/profile/profile.html",
             controller: "profileCtrl",
         })
+        .state('editProfile', {
+            url: "/editProfile",
+            templateUrl: "angular/views/profile/editProfile.html",
+            controller: "editProfileCtrl",
+        })
         .state('newPost', {
             url: "/newPost",
             templateUrl: "angular/views/posts/createPost.html",

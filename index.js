@@ -75,23 +75,26 @@ app.get('/', function (req, res) {
 });
 
 
-app.post("/info", function (req, res) {
+app.post("/updateUser", function (req, res) {
 
-    response = {
-        message: "hello there this is info"
-    };
+    var updatedUser = req.body;
+    var query = {email: updatedUser.email};
 
-    console.log(response);
+    models.User.update({email: updatedUser.email},
+        {
+            first_name: updatedUser.first_name,
+            last_name: updatedUser.last_name,
+            email: updatedUser.email,
+            bio: updatedUser.bio,
+            profile_pic: updatedUser.profile_pic
+        },
+        function (err, numberAffected, rawResponse) {
+            if (err) console.log(err);
+            console.log(rawResponse);
+            res.end(JSON.stringify(updatedUser));
+        });
 
-    res.end(JSON.stringify(response));
 });
-
-app.post("/input", function (req, res) {
-    var input = req.body;
-    console.log(input.message);
-    res.end("thanks");
-});
-
 
 app.post("/createPost", function (req, res) {
     var input = req.body;
@@ -160,12 +163,22 @@ app.post("/getTags", function (req, res) {
 });
 
 
+app.post("/getPics", function (req, res) {
+
+    models.Picture.find({}, function (err, pics) {
+        res.send(pics);
+    });
+
+});
+
+
 app.post("/getUser", function (req, res) {
 
     models.User.findOne({email: "rkcoxe@gmail.com"}, function (err, user) {
         console.log(user);
         res.send(user);
-    });
+    })
+    .populate("profile_pic");
 
 });
 
