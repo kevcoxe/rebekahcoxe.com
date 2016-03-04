@@ -75,7 +75,8 @@ app.post("/getPosts", function (req, res) {
 
 app.post("/getUser", function (req, res) {
 
-    models.Post.findOne({_id: "56b5fbcaa4e8cad92ca25b29"}, function (err, user) {
+
+    models.User.findOne({email: "rkcoxe@gmail.com"}, function (err, user) {
         res.send(user);
     });
 
